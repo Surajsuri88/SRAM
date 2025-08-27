@@ -1,0 +1,52 @@
+module tb1;
+reg clk,rst;
+reg [15:0] addr,wdata;
+reg write,valid;
+wire [15:0] rdata;
+wire error,ready;
+
+integer i;
+
+Ram4Kb dut(clk,rst,addr,wdata,write,valid,error,ready,rdata);
+
+//clock generation
+initial begin
+	clk=0;
+	forever #1 clk=~clk;
+end
+
+
+initial begin
+	rst=1;
+	#20;
+	rst=0;
+	#20;
+	for(i=0;i<=2047;i=i+1)begin
+		addr=i;
+		wdata=i+1;
+		write=1;
+		valid=1;
+		#10;
+	end
+
+
+	//read
+	for(i=0;i<=2047;i=i+1)begin
+		addr=i;
+		write=0;
+		valid=1;
+
+		wait(ready==1)
+		#10;end
+	end
+
+	initial begin
+		$monitor("addr=%d wdata=%d rdata=%d write=%d",addr,wdata,rdata,write);
+end
+initial begin
+	#1000;
+	$finish();
+end
+
+
+endmodule
