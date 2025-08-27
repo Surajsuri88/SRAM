@@ -1,0 +1,71 @@
+m255
+K4
+z2
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+Z0 dE:/verilog/Project/Rom4Kb
+vRom4Kb
+Z1 VDg1SIo80bB@j0V0VzS_@n1
+r1
+!s85 0
+31
+!i10b 1
+!s100 S<S9Vk[b;bVk?I9[<<nUj1
+IlVAUfB<ZSPNehNkV`N8Mz0
+R0
+Z2 w1723903036
+Z3 8Rom4Kb.v
+Z4 FRom4Kb.v
+L0 1
+Z5 OL;L;10.6c;65
+Z6 !s108 1723903039.000000
+Z7 !s107 Rom4Kb.v|
+Z8 !s90 -reportprogress|300|Rom4Kb.v|
+!i113 0
+Z9 o-L mtiAvm -L mtiRnm -L mtiOvm -L mtiUvm -L mtiUPF -L infact
+Z10 tCvgOpt 0
+n@rom4@kb
+vtb
+R1
+r1
+!s85 0
+31
+!i10b 1
+!s100 TJF=XmzcaGVBIIizo<[Tm0
+I=;obfG:_KnQcnG3b<5=aW3
+R0
+w1723900886
+R3
+R4
+Z11 L0 46
+R5
+!s108 1723900890.000000
+R7
+R8
+!i113 0
+R9
+R10
+vtb1
+R1
+r1
+!s85 0
+31
+!i10b 1
+!s100 Q]R8KEh[P@Qbhc85jmhf61
+IiHkK];>1?bKk`>9VbMj<H3
+R0
+R2
+R3
+R4
+R11
+R5
+R6
+R7
+R8
+!i113 0
+R9
+R10

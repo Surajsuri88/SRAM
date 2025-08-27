@@ -1,0 +1,98 @@
+module Rom4Kb(clk,rst,addr,wdata,write,valid,error,ready,rdata);
+input clk,rst,write,valid;
+input [15:0] addr;
+input [15:0] wdata;
+output reg [15:0] rdata;
+output reg error,ready;
+
+integer i;
+
+reg [15:0] mem [2047:0]; //memory creation
+
+always@(posedge clk) begin
+	/*if(rst==1)begin  //rst=1  power off state
+		for(i=0;i<=2047;i=i+1)begin
+			mem[i]=0;
+		end
+		rdata=0;
+		error=0;
+		ready=0;
+	end */
+	if(rst==1 | rst==0) begin
+		if(addr<=2047)begin
+			error=0;
+			if(valid==1)begin //valid=1
+				ready=1;
+				if(write==1)begin //write=1
+					mem[addr]=wdata;
+				end
+				else begin	 //write=0
+					rdata=mem[addr];
+				end
+			end
+			else begin //valid=0
+				ready=0;
+			end
+		end
+		else begin
+			error=1;
+		end
+	end
+end
+
+endmodule
+
+
+module tb1;
+reg clk,rst;
+reg [15:0] addr,wdata;
+reg write,valid;
+wire [15:0] rdata;
+wire error,ready;
+
+integer i;
+
+Rom4Kb dut(clk,rst,addr,wdata,write,valid,error,ready,rdata);
+
+//clock generation
+initial begin
+	clk=0;
+	forever #5 clk=~clk;
+end
+
+
+initial begin
+	rst=1;
+	#20;
+	rst=0;
+	#20;
+	for(i=0;i<=20;i=i+1)begin
+		addr=i;
+		wdata=i+1;
+		write=1;
+		valid=1;
+		#10;
+	end
+ rst=1;
+#5;
+
+	//read
+	for(i=0;i<=20;i=i+1)begin
+		addr=i;
+		write=0;
+		valid=1;
+		wait(ready==1)
+		#10;
+end
+end
+
+	initial begin
+		$monitor("rst=%d addr=%d wdata=%d rdata=%d write=%d",rst,addr,wdata,rdata,write);
+end
+initial begin
+	#1000000;
+	$finish();
+end
+
+
+endmodule
